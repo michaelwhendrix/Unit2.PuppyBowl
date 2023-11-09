@@ -59,9 +59,9 @@ const getSinglePuppy = async (id) => {
             style = "height: 500px; 
                     width: 400px"
             alt = "puppy image"/>
+        <button>Back To All Puppies</button>
     </div>
-`
-
+`;
  }
 
  const renderAllPuppies = (puppies) => {
@@ -84,6 +84,14 @@ const getSinglePuppy = async (id) => {
     const detailCard = document.createElement('span');
     detailCard.innerHTML = renderDetailCard(puppy);
     main.replaceChildren(detailCard);
+
+    const backButton = document.querySelector('button');
+    backButton.addEventListener('click',()=> {
+        main.innerHTML = '';
+        getAllPuppies();
+    });
+    
+
  }
 getAllPuppies();
 } catch(error){console.error(error);}
