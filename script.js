@@ -42,10 +42,10 @@ const addPuppy = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name: puppy.name,
-            breed: puppy.breed,
-            status: puppy.status,
-            imageUrl: puppy.imageUrl
+            name: state.newPuppy.name,
+            breed: state.newPuppy.breed,
+            status: state.newPuppy.status,
+            imageUrl: state.newPuppy.imageUrl
         })
     }
     );
