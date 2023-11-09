@@ -93,5 +93,14 @@ const getSinglePuppy = async (id) => {
     
 
  }
+
+ const renderHeader = () => {
+    const header = document.querySelector('header');
+    header.setAttribute('style', 'height:150px; border: 3px solid black');
+    const form = document.createElement('form');
+    form.innerHTML = 'test';
+    header.appendChild(form);
+ }
+ renderHeader();
 getAllPuppies();
 } catch(error){console.error(error);}
