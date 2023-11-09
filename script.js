@@ -44,6 +44,12 @@ const getAllPuppies = async () => {
         main.appendChild(state.cards[i]);
     }
 
+    for(let i = 0; i < puppies.length; i++){
+        state.cards[i].addEventListener('click', () => {
+            console.log('test');
+        })
+    }
+
 
  }
 getAllPuppies();
