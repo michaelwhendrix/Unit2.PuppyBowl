@@ -27,6 +27,10 @@ const getSinglePuppy = async (id) => {
     renderSinglePuppy(state.singlePuppy);
 }
 
+const addPuppy = () => {
+
+}
+
  const renderCard = (puppy) => {
     return `
             <div style = "height:500px; width:300px;
@@ -59,7 +63,7 @@ const getSinglePuppy = async (id) => {
             style = "height: 500px; 
                     width: 400px"
             alt = "puppy image"/>
-        <button>Back To All Puppies</button>
+        <button id = "back-button">Back To All Puppies</button>
     </div>
 `;
  }
@@ -77,9 +81,10 @@ const getSinglePuppy = async (id) => {
                 <input type= "text"/>
                 <label>Image URL</label>
                 <input type = "text"/>
-                <button type = "submit">Submit</button>
+                <button type = "submit" id = "form-button">Submit</button>
             </form>
     `
+
  }
 
  const renderAllPuppies = (puppies) => {
@@ -103,7 +108,7 @@ const getSinglePuppy = async (id) => {
     detailCard.innerHTML = renderDetailCard(puppy);
     main.replaceChildren(detailCard);
 
-    const backButton = document.querySelector('button');
+    const backButton = document.querySelector('#back-button');
     backButton.addEventListener('click',()=> {
         main.innerHTML = '';
         getAllPuppies();
@@ -118,6 +123,12 @@ const getSinglePuppy = async (id) => {
     const form = document.createElement('form');
     form.innerHTML = renderForm();
     header.appendChild(form);
+    const submitButton = document.querySelector('#form-button');
+    submitButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    console.log('test submit');
+} )
+
  }
  renderHeader();
 getAllPuppies();
