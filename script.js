@@ -4,7 +4,8 @@ const baseURL = `https://fsa-puppy-bowl.herokuapp.com/api/2310-FSA-ET-WEB-FT-SF`
 const state = {
     allPuppies: [],
     cards: [],
-    singlePuppy: {}
+    singlePuppy: {},
+    newPuppy: {}
 };
 
 const main = document.querySelector('main');
@@ -27,8 +28,29 @@ const getSinglePuppy = async (id) => {
     renderSinglePuppy(state.singlePuppy);
 }
 
-const addPuppy = () => {
+const addPuppy = async () => {
+    state.newPuppy.name =  document.querySelector('#name');
+    state.newPuppy.breed =  document.querySelector('#breed');
+    state.newPuppy.status =  document.querySelector('#status');
+    state.newPuppy.imageUrl =  document.querySelector('#imageUrl');
+    console.log(state.newPuppy);
 
+    const response = await fetch(`${baseURL}/players`,
+    {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: puppy.name,
+            breed: puppy.breed,
+            status: puppy.status,
+            imageUrl: puppy.imageUrl
+        })
+    }
+    );
+    const result = await response.json();
+    console.log(result);
 }
 
  const renderCard = (puppy) => {
@@ -74,13 +96,13 @@ const addPuppy = () => {
             <h3>Add New Puppy</h3>
             <form>
                 <label>Name</label>
-                <input type= "text"/>
+                <input type= "text" id = "name"/>
                 <label>Breed</label>
-                <input type = "text"/>
+                <input type = "text" id = "breed"/>
                 <label>Status</label>
-                <input type= "text"/>
+                <input type= "text" id = "status"/>
                 <label>Image URL</label>
-                <input type = "text"/>
+                <input type = "url" id = "imageUrl"/>
                 <button type = "submit" id = "form-button">Submit</button>
             </form>
     `
@@ -124,10 +146,10 @@ const addPuppy = () => {
     form.innerHTML = renderForm();
     header.appendChild(form);
     const submitButton = document.querySelector('#form-button');
-    submitButton.addEventListener('click', (event) => {
+    submitButton.addEventListener('submit', (event) => {
     event.preventDefault();
-    console.log('test submit');
-} )
+    addPuppy();
+} );
 
  }
  renderHeader();
