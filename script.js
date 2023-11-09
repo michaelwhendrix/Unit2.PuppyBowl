@@ -21,7 +21,15 @@ const getAllPuppies = async () => {
 
  const renderCard = (puppy) => {
     return `
-            <div>${puppy}</div>
+            <div style = "height:500px; width:300px;
+                            border:3px solid black;
+                            margin:5px;
+                            display:flex;
+                            flex-direction:column;
+                            justify-content:space-around;
+                            align-items:center">
+                <h2>${puppy}</h2>
+            </div>
     `
  }
 
