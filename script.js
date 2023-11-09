@@ -64,6 +64,24 @@ const getSinglePuppy = async (id) => {
 `;
  }
 
+ const renderForm = () => {
+    return `
+            <h1>Puppy Bowl Roster</h1>
+            <h3>Add New Puppy</h3>
+            <form>
+                <label>Name</label>
+                <input type= "text"/>
+                <label>Breed</label>
+                <input type = "text"/>
+                <label>Status</label>
+                <input type= "text"/>
+                <label>Image URL</label>
+                <input type = "text"/>
+                <button type = "submit">Submit</button>
+            </form>
+    `
+ }
+
  const renderAllPuppies = (puppies) => {
     for(let i = 0; i < puppies.length; i++){
         state.cards[i] = document.createElement('span');
@@ -98,7 +116,7 @@ const getSinglePuppy = async (id) => {
     const header = document.querySelector('header');
     header.setAttribute('style', 'height:150px; border: 3px solid black');
     const form = document.createElement('form');
-    form.innerHTML = 'test';
+    form.innerHTML = renderForm();
     header.appendChild(form);
  }
  renderHeader();
