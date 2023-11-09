@@ -28,7 +28,11 @@ const getAllPuppies = async () => {
                             flex-direction:column;
                             justify-content:space-around;
                             align-items:center">
-                <h2>${puppy}</h2>
+                <h2>${puppy.name}</h2>
+                <img src = ${puppy.imageUrl} 
+                    style = "height: 250px; 
+                            width: 200px"
+                    alt = "puppy image"/>
             </div>
     `
  }
@@ -36,7 +40,7 @@ const getAllPuppies = async () => {
  const renderAllPuppies = (puppies) => {
     for(let i = 0; i < puppies.length; i++){
         state.cards[i] = document.createElement('span');
-        state.cards[i].innerHTML = renderCard(puppies[i].name);
+        state.cards[i].innerHTML = renderCard(puppies[i]);
         main.appendChild(state.cards[i]);
     }
 
