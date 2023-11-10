@@ -31,9 +31,6 @@ const getSinglePuppy = async (id) => {
 const addPuppy = async () => {
     state.newPuppy.name =  document.querySelector('#name');
     state.newPuppy.breed =  document.querySelector('#breed');
-    state.newPuppy.status =  document.querySelector('#status');
-    state.newPuppy.imageUrl =  document.querySelector('#imageUrl');
-    console.log(state.newPuppy);
 
     const response = await fetch(`${baseURL}/players`,
     {
@@ -42,11 +39,9 @@ const addPuppy = async () => {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name: state.newPuppy.name,
-            breed: state.newPuppy.breed,
-            status: state.newPuppy.status,
-            imageUrl: state.newPuppy.imageUrl
-        })
+            name: state.newPuppy.name.value,
+            breed: state.newPuppy.breed.value
+       })
     }
     );
     const result = await response.json();
@@ -94,16 +89,12 @@ const addPuppy = async () => {
     return `
             <h1>Puppy Bowl Roster</h1>
             <h3>Add New Puppy</h3>
-            <form>
+            <form type ="input">
                 <label>Name</label>
                 <input type= "text" id = "name"/>
                 <label>Breed</label>
                 <input type = "text" id = "breed"/>
-                <label>Status</label>
-                <input type= "text" id = "status"/>
-                <label>Image URL</label>
-                <input type = "url" id = "imageUrl"/>
-                <button type = "submit" id = "form-button">Submit</button>
+                <button id = "form-button">Submit</button>
             </form>
     `
 
@@ -145,13 +136,16 @@ const addPuppy = async () => {
     const form = document.createElement('form');
     form.innerHTML = renderForm();
     header.appendChild(form);
-    const submitButton = document.querySelector('#form-button');
-    submitButton.addEventListener('submit', (event) => {
+    //const submitButton = document.querySelector('#form-button');
+    form.addEventListener('submit', (event) => {
     event.preventDefault();
+    //console.log();
     addPuppy();
 } );
 
  }
- renderHeader();
+
+renderHeader();
 getAllPuppies();
+
 } catch(error){console.error(error);}
